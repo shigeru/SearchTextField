@@ -136,10 +136,10 @@ open class SearchTextField: UITextField {
     ////////////////////////////////////////////////////////////////////////
     // Private implementation
     
-    fileprivate var tableView: UITableView?
-    fileprivate var shadowView: UIView?
+    public var tableView: UITableView?
+    public var shadowView: UIView?
     fileprivate var direction: Direction = .down
-    fileprivate var fontConversionRate: CGFloat = 0.7
+    public var fontConversionRate: CGFloat = 0.7
     fileprivate var keyboardFrame: CGRect?
     fileprivate var timer: Timer? = nil
     fileprivate var placeholderLabel: UILabel?
@@ -147,7 +147,7 @@ open class SearchTextField: UITextField {
     fileprivate let indicator = UIActivityIndicatorView(style: .gray)
     fileprivate var maxTableViewSize: CGFloat = 0
     
-    fileprivate var filteredResults = [SearchTextFieldItem]()
+    public var filteredResults = [SearchTextFieldItem]()
     fileprivate var filterDataSource = [SearchTextFieldItem]() {
         didSet {
             filter(forceShowAll: forceNoFiltering)
@@ -204,7 +204,7 @@ open class SearchTextField: UITextField {
     }
     
     // Create the filter table and shadow view
-    fileprivate func buildSearchTableView() {
+    open func buildSearchTableView() {
         guard let tableView = tableView, let shadowView = shadowView else {
             self.tableView = UITableView(frame: CGRect.zero)
             self.shadowView = UIView(frame: CGRect.zero)
@@ -264,7 +264,7 @@ open class SearchTextField: UITextField {
     }
     
     // Re-set frames and theme colors
-    fileprivate func redrawSearchTableView() {
+    public func redrawSearchTableView() {
         if inlineMode {
             tableView?.isHidden = true
             return
@@ -564,7 +564,7 @@ extension SearchTextField: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: SearchTextField.cellIdentifier)
         
         if cell == nil {
